@@ -6,7 +6,7 @@
 //         <div>
 //             <footer className="footer footer-center p-10 bg-base-200 text-base-content rounded">
 //                 <div className="grid grid-flow-col gap-4">
-               
+
 //                     <Link to='/'>Home </Link>
 //                     <Link to='/contact'>Contact </Link>
 //                     <Link to='/fund'>Fund </Link> 
@@ -32,14 +32,14 @@
 
 import React from "react";
 // h-[calc(100vh-70px)]
- 
+
 
 import Logo from '../../src/assets/logo/logo.png'
 import { FaBeer, FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa';
 const Footer = () => {
     return (
         <div className=" px-12">
-            <hr  className="my-4"/>
+            <hr className="my-4" />
             {/* <div className='mt-[calc(90vh-200px)]'> */}
             <footer className="footer    bg-black text-base-content      ">
 
@@ -50,8 +50,8 @@ const Footer = () => {
                         <p className="md:text-4xl text-2xl text-white italic mt-4  rounded-3xl"> <span className="text-red-600">Bismillah</span> Tower</p>
 
                         <p className="mt-4 text-justify text-white font-semibold mb-4">
-                           
-Welcome to Bismillah Towers, a contemporary haven in the heart of downtown.Residents enjoy the convenience of an on-site fitness center, rooftop lounge, and secure access, providing the perfect blend of comfort and luxury. Nestled within walking distance of bustling urban attractions, CityView Towers ensures a vibrant lifestyle, making it an ideal choice for those seeking a stylish and connected living experience in the heart of the city.
+
+                            Welcome to Bismillah Towers, a contemporary haven in the heart of downtown.Residents enjoy the convenience of an on-site fitness center, rooftop lounge, and secure access, providing the perfect blend of comfort and luxury. Nestled within walking distance of bustling urban attractions, CityView Towers ensures a vibrant lifestyle, making it an ideal choice for those seeking a stylish and connected living experience in the heart of the city.
                         </p>
 
                         <hr className="mt-8 mb-8" />
@@ -66,15 +66,15 @@ Welcome to Bismillah Towers, a contemporary haven in the heart of downtown.Resid
                     </div>
 
                     {/* map  */}
-                    <div className="pr-10">
+                    <div className=" flex">
 
- 
 
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d58398.296934869184!2d90.35336203208172!3d23.8223837841751!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c7452d787051%3A0x826652c6f9b5e68d!2sBismillah%20Tower!5e0!3m2!1sen!2sbd!4v1700246653989!5m2!1sen!2sbd"      loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-                    className="md:h-96 md:w-[500px] "
-                    ></iframe>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d58398.296934869184!2d90.35336203208172!3d23.8223837841751!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c7452d787051%3A0x826652c6f9b5e68d!2sBismillah%20Tower!5e0!3m2!1sen!2sbd!4v1700246653989!5m2!1sen!2sbd" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                            className="md:h-96 mx-auto  rounded-lg       "
+                        ></iframe>
 
-                       
+
+
                     </div>
                 </div>
 
@@ -87,7 +87,7 @@ Welcome to Bismillah Towers, a contemporary haven in the heart of downtown.Resid
 
             <div className=" bg-black p-4 md:p-0 mt-12">
                 <hr />
-                
+
 
                 <footer className="footer items-center p-4  bg-black text-neutral-content">
                     <aside className="items-center grid-flow-col">

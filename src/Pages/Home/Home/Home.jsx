@@ -9,6 +9,7 @@ import useNotice from '../../../hooks/useNotice';
 import { Helmet } from 'react-helmet-async';
 import { AuthContext } from '../../../Provider/AuthProvider';
 import LoadingPage from '../../../Shared/LoadingPage';
+import Member from './Member';
 
 const Home = () => {
 
@@ -50,8 +51,9 @@ const Home = () => {
                     </span></p> */}
                 </Marquee>
             </div>
+            <Member></Member>
 
-            <ClubMembers></ClubMembers>
+            {/* <ClubMembers></ClubMembers> */}
             <GalleryHome></GalleryHome>
             <Faq></Faq>
             <Contact></Contact>

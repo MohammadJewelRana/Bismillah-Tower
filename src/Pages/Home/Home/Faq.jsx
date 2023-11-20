@@ -34,7 +34,7 @@ const Faq = () => {
 
 
     return (
-        <section className='px-8'>
+        <section className='  px-12'>
             <div className="container">
                 <SectionTitle heading={"FAQ's"} subHeading={'World class care for everyone Our health system offers unmatched expert health care'}></SectionTitle>
 
@@ -47,7 +47,7 @@ const Faq = () => {
                     </div>
 
 
-                    <div className="w-full lg:w-1/2 xl:w-[670px] ">
+                    <div className="w-full lg:w-1/2 xl:w-[670px]   ">
                         <h2 className='text-xl text-red-600 font-bold'>Most questions by our beloved visitors </h2>
                         {
                             faqs.map(faqsData => <div className="collapse collapse-plus border mt-8 ">
