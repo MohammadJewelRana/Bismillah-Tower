@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { ToastContainer, toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../Provider/AuthProvider';
+import SectionTitle from '../../Shared/SectionTitle';
 
 const Expense = ({ refetch }) => {
 
@@ -23,7 +24,7 @@ const Expense = ({ refetch }) => {
         console.log(info);
 
 
-        fetch('http://localhost:5000/expense', {
+        fetch('https://bismillah-tower-server.vercel.app/expense', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -51,12 +52,18 @@ const Expense = ({ refetch }) => {
 
     }
 
-
+    const [isLoading, setIsLoading] = useState(false);
+    const handleClick = () => {
+        setIsLoading(true);
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 2000);
+    };
 
     return (
         <div className=' mt-12 '>
 
-            <h1 className='text-center'>Expense  </h1>
+            <SectionTitle heading={'Expense'}> </SectionTitle>
 
             <form onSubmit={handleSubmit(onSubmit)}>
 
@@ -132,8 +139,17 @@ const Expense = ({ refetch }) => {
 
 
 
+                {/* 
+                <button className="btn  bg-blue-700 text-white  w-full">Add Expense</button> */}
 
-                <button className="btn  bg-blue-700 text-white  w-full">Add Expense</button>
+                <button className={`  mb-24 mt-8 bg-blue-700 text-white text-xl py-4   rounded-xl   w-full ${isLoading ? ' opacity-50 cursor-not-allowed bg-base-200' : 'hover:bg-base-600'}  `}
+                    onClick={handleClick}
+                >
+                    Add Expense
+                </button>
+
+
+
             </form>
 
 

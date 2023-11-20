@@ -9,3 +9,8 @@
     background-color: white;
  
   }
+
+  body{
+    /* background-color: hsl(323, 25%, 6%); */
+    background-image: linear-gradient(to bottom, #080808, #231427);
+  }

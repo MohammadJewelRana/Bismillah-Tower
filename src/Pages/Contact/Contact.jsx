@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import SectionTitle from '../../Shared/SectionTitle';
-import photo from '../../assets/fund/money.jpg'
+// import photo from '../../assets/fund/money.jpg'
 import { useForm } from 'react-hook-form';
 import { ToastContainer, toast } from 'react-toastify';
 import Swal from 'sweetalert2';
@@ -9,6 +9,7 @@ import { FaMailBulk, FaPhone, FaWhatsapp } from 'react-icons/fa';
 import useUser from '../../hooks/useUser';
 
 import imageIcon from '../../assets/profilePic/user.png'
+import { Helmet } from 'react-helmet-async';
 
 
 const img_hosting_token = import.meta.env.VITE_Image_Upload_Token;
@@ -27,7 +28,9 @@ const Contact = () => {
 
         <>
      
-
+     <Helmet>
+                <title>Contact | Bismillah-Tower </title>
+            </Helmet>
 
             <div className='mb-16 mt-20'>
      
@@ -68,7 +71,7 @@ const Contact = () => {
                                                 </div>
                                                 <div className="table-cell py-6 text-xl  border-t">{memberInfo.name ? memberInfo.name : 'none'}</div>
                                                 <div className="table-cell py-6 text-xl  border-t">{memberInfo.email}</div>
-                                                <div className="table-cell py-6 text-xl  border-t"> {memberInfo.contact ? memberInfo.contact : 'none'}</div>
+                                                <div className="table-cell py-6 text-xl  border-t"> {memberInfo.phone ? memberInfo.phone : 'none'}</div>
                                                 <div className="table-cell py-6 text-xl  border-t"> {memberInfo.whatsapp ? memberInfo.whatsapp : 'none'}</div>
                                             </div>
 

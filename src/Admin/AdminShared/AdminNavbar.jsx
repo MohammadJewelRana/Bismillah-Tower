@@ -6,13 +6,15 @@ import useUser from '../../hooks/useUser';
 import { NavLink } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import ErrorPage from '../../Shared/ErrorPage';
+import LoadingPage from '../../Shared/LoadingPage';
+import Swal from 'sweetalert2';
 
 const AdminNavbar = () => {
 
 
     const navigate = useNavigate();
-    const { user, logout,loading } = useContext(AuthContext);
-   
+    const { user, logout, loading } = useContext(AuthContext);
+
 
     const handleLogout = () => {
         Swal.fire({
@@ -42,11 +44,11 @@ const AdminNavbar = () => {
 
     }
 
-   
+
 
     // const [userAll,setUserAll]=useState([]);
     // useEffect( ()=>{
-    //     fetch('http://localhost:5000/users')
+    //     fetch('https://bismillah-tower-server.vercel.app/users')
     //     .then(res=>res.json())
     //     .then(data=> {
     //         setUserAll(data);
@@ -54,31 +56,38 @@ const AdminNavbar = () => {
     // },[])
 
     // const findUser=userAll.find(fd=>fd.email=== user?.email);
-  
-    const  [userAll,userAllLoading,userAllRefetch,findUser] = useUser();
-  
-    if(userAllLoading){
-        return  <ErrorPage></ErrorPage>
-    }
+
+    const [userAll, userAllLoading, userAllRefetch, findUser] = useUser();
+
+    // if (userAllLoading) {
+    //     return <ErrorPage></ErrorPage>
+    // }
+    // if(userAllLoading){
+    //     return   <LoadingPage></LoadingPage>
+    // }
     //  console.log(findUser);
 
 
- 
+
 
 
 
     const navLinks = < >
-        <li>    <NavLink to="/dashboard/home" className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "    border-b-2   border-b-white " : ""} > Dashboard </NavLink></li>
+        <li>    <NavLink to="/dashboard" className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "    border-b-2   border-b-white " : ""} > Dashboard </NavLink></li>
 
         <li>    <NavLink to="/dashboard/fund" className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "    border-b-2   border-b-white " : ""} > Fund </NavLink></li>
 
-        <li>   <NavLink to="/dashboard/notice" className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "    border-b-2   border-b-white " : ""} >  Notice </NavLink>
-        </li>
-        <li><NavLink to="/dashboard/image" className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "    border-b-2   border-b-white " : ""} > Add Image </NavLink>
-        </li>
+        <li>    <NavLink to="/dashboard/collect" className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "    border-b-2   border-b-white " : ""} > Campaign </NavLink></li>
+
+
+
         <li><NavLink to="/dashboard/user" className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "    border-b-2   border-b-white " : ""} > User </NavLink>
         </li>
- 
+        <li><NavLink to="/dashboard/image" className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "    border-b-2   border-b-white " : ""} > Gallery</NavLink>
+        </li>
+        <li>   <NavLink to="/dashboard/notice" className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "    border-b-2   border-b-white " : ""} >  Notice </NavLink>
+        </li>
+
 
 
     </>
@@ -116,7 +125,7 @@ const AdminNavbar = () => {
                                 <div title={findUser?.name}>
                                     <label tabIndex={0} className="btn btn-ghost btn-circle avatar" >
                                         <div className="w-10 rounded-full"  >
-                                            <img src={user?.photo}  />
+                                            <img src={user?.photoURL} />
                                         </div>
                                     </label>
 

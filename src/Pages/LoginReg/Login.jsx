@@ -8,13 +8,14 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SocialLogin from './SocialLogin';
 import { AuthContext } from '../../Provider/AuthProvider';
- 
+import { Helmet } from 'react-helmet-async';
+
 
 
 const Login = () => {
- 
 
-    const { login,user } = useContext(AuthContext) ;
+
+    const { login, user } = useContext(AuthContext);
     // console.log(user);
 
 
@@ -25,7 +26,7 @@ const Login = () => {
 
 
     const { register, reset, handleSubmit, formState: { errors } } = useForm();
-   
+
 
     const onSubmit = data => {
         console.log(data);
@@ -45,16 +46,15 @@ const Login = () => {
             })
 
     }
- 
+
 
 
     return (
         <div className=''>
 
-            {/* <Helmet>
-                <title>Login | CosmetiCraft</title>
-            </Helmet> */}
-
+            <Helmet>
+                <title>Login | Bismillah-Tower </title>
+            </Helmet>
             <form onSubmit={handleSubmit(onSubmit)} >
                 <div className="hero min-h-screen  ">
                     <div className="hero-content flex-col lg:flex-row-reverse">
@@ -88,21 +88,21 @@ const Login = () => {
                                         </label>
                                         <div className='w-full rounded-md border-sky-300  '>
 
-                                            <input type='text'  required
+                                            <input type='password' required
                                                 {...register("password", {
                                                     required: true,
                                                     maxLength: 20,
                                                     minLength: 6,
-                                                    pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z].*[a-z])/
+                                                    
 
                                                 })}
                                                 placeholder="password" className="input w-full   bg-base-100 border  text-white" />
-                                           
+
 
 
                                         </div>
                                         <p>
-                                            {errors.password?.type === 'required' && <p className='text-red-600 mt-2' > Password is required</p>}
+                                            {errors.password?.type === 'required' && <p className='text-white mt-2' > Password is required</p>}
                                             {errors.password?.type === 'minLength' && <p className='text-red-600 mt-2' > Password must be 6 character</p>}
                                             {errors.password?.type === 'maxLength' && <p className='text-red-600 mt-2' > Password should not be greater than 20 character   </p>}
                                             {errors.password?.type === 'pattern' && <p className='text-red-600 mt-2' > Password  must have one uppercase one lowercase one number and one special characters  </p>}

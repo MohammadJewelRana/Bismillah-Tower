@@ -3,6 +3,7 @@ import React from 'react';
 
 // import faq from '../../../assets/images/faq-img.png'
 import faq from '../../../assets/image/InShot_20230803_170208594.jpg'
+import faq1 from '../../../assets/image/InShot_20231118_001636242.jpg'
 import { Link } from 'react-router-dom';
 import SectionTitle from '../../../Shared/SectionTitle';
 
@@ -11,18 +12,18 @@ const Faq = () => {
     const faqs = [
         {
             id: 1,
-            question: "How can I schedule a medical appointment?",
-            answer: "You can schedule a medical appointment by calling our clinic's reception desk or using our online appointment booking system on our website."
+            question: "How is the security in the building?",
+            answer: "The building has 24/7 security personnel, surveillance cameras in common areas, secure access entry systems, and well-lit parking areas to ensure residents' safety."
         },
         {
             id: 2,
-            question: "What information do I need to provide when scheduling an appointment?",
-            answer: "When scheduling an appointment, you'll need to provide your name, contact information, reason for the appointment, preferred date and time, and any relevant medical history or referral documents."
+            question: "Is parking available for residents and visitors?",
+            answer: "Yes, there is designated parking available for residents. Visitors can use the guest parking area on a first-come, first-served basis."
         },
         {
             id: 3,
-            question: "Can I reschedule or cancel my appointment?",
-            answer: "Yes, you can reschedule or cancel your appointment by contacting our clinic's reception ."
+            question: "What's the policy on subletting the apartment?",
+            answer: "Subletting is generally not allowed without prior approval from the building management. If you're interested in subletting, please discuss it with the management team."
         },
       
  
@@ -42,7 +43,7 @@ const Faq = () => {
                  
                     {/* about image */}
                     <div className=" w-3/4 lg:w-1/2 xl:w-[770px] mx-auto  ">
-                        <img className='h-[600px] rounded-lg ' src={faq} alt="" />
+                        <img className='md:h-[600px] h-[400px] rounded-lg   md:ml-16' src={faq1} alt="" />
                     </div>
 
 

@@ -35,7 +35,7 @@ const AddCollege = () => {
 
 
     const { register, reset, handleSubmit, formState: { errors } } = useForm();
-   
+
     const onSubmit = data => {
         console.log(data);
 
@@ -50,7 +50,7 @@ const AddCollege = () => {
         // // console.log('newData :: ', newData);
 
 
-        // fetch('http://localhost:5000/doctors', {
+        // fetch('https://bismillah-tower-server.vercel.app/doctors', {
         //     method: 'POST',
         //     headers: {
         //         'content-type': 'application/json'

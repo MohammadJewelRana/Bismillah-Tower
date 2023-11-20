@@ -36,8 +36,8 @@ const SocialLogin = () => {
             .then(res => {
                 const loggedUser = res.user;
                 const saveUser = { name: loggedUser.displayName, email: loggedUser.email, photo: loggedUser.photoURL, userRole: 'visitor' };
-              
-                fetch('http://localhost:5000/users', {
+
+                fetch('https://bismillah-tower-server.vercel.app/users', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -51,7 +51,7 @@ const SocialLogin = () => {
                         // navigate('/')
 
                     })
-                    navigate('/')
+                navigate('/')
             })
     }
 

@@ -23,7 +23,7 @@ const Contact = () => {
      
   
       return (
-          <div id='contact' name='contact' className=' text-gray-300 w-full  '>
+          <div id='contact' name='contact' className=' text-gray-300 w-full px-12 '>
               <div className='  max-w-[1200px] mx-auto p-4 flex flex-col justify-center w-full h-full mb-24'>
                
               <SectionTitle heading={"Have any query?"} subHeading={"Curious Minds Welcome: Uncover Answers to Your Questions"}></SectionTitle>

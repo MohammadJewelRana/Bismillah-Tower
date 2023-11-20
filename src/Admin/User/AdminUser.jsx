@@ -9,6 +9,7 @@ import useUser from '../../hooks/useUser';
 import Swal from 'sweetalert2';
 
 import userImage from '../../assets/profilePic/user.png'
+import { Helmet } from 'react-helmet-async';
 
 const img_hosting_token = import.meta.env.VITE_Image_Upload_Token;
 
@@ -48,7 +49,7 @@ const AdminUser = () => {
 
                     const info = { name: data.name, email: data.email, password: data.password, image: imgURL, userRole: 'member' }
 
-                    fetch('http://localhost:5000/users', {
+                    fetch('https://bismillah-tower-server.vercel.app/users', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json'
@@ -57,7 +58,7 @@ const AdminUser = () => {
                     })
                         .then(res => res.json())
                         .then(data => {
-                            console.log(data);
+                            // console.log(data);
                             if (data.insertedId) {
                                 refetch();
                                 userAllRefetch();
@@ -93,12 +94,12 @@ const AdminUser = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`http://localhost:5000/users/${id}`, {
+                fetch(`https://bismillah-tower-server.vercel.app/users/${id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
                     .then(data => {
-                        console.log(data);
+                        // console.log(data);
                         if (data.deletedCount > 0) {
                             userAllRefetch()
                             Swal.fire(
@@ -122,12 +123,12 @@ const AdminUser = () => {
     }
 
 
-    const handleUserRole=(id,role)=>{
-        console.log(id,role);
+    const handleUserRole = (id, role) => {
+        // console.log(id, role);
 
-        const newData={userId:id,updateUserRole:role};
+        const newData = { userId: id, updateUserRole: role };
 
-        fetch('http://localhost:5000/users/role', {
+        fetch('https://bismillah-tower-server.vercel.app/users/role', {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -136,9 +137,9 @@ const AdminUser = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 if (data.modifiedCount > 0) {
-                     userAllRefetch();
+                    userAllRefetch();
                     Swal.fire({
                         title: 'Success!',
                         text: `User Role updated successfully to ${role}`,
@@ -148,7 +149,7 @@ const AdminUser = () => {
                 }
             })
             .catch(error => {
-                console.log(error.message);
+                // console.log(error.message);
                 toast('Failed to update status for this notice.')
             })
 
@@ -163,6 +164,9 @@ const AdminUser = () => {
     return (
 
         <>
+                    <Helmet>
+                <title>User | Bismillah-Tower </title>
+            </Helmet>
             <div className='float-right mt-4'>
                 <button onClick={() => setAddMember(!addMember)} className="btn btn-primary ">
                     {addMember ? 'Close the Form' : 'Add New Member'}
@@ -257,7 +261,7 @@ const AdminUser = () => {
                                         <div className="table-cell  py-6 text-xl">Email</div>
 
                                         <div className="table-cell  py-6 text-xl">Role</div>
-                                  
+
                                         <div className="table-cell  py-6 text-xl">ChangeRole</div>
                                         <div className="table-cell  py-6 text-xl pe-4">Action</div>
                                     </div>
@@ -268,47 +272,57 @@ const AdminUser = () => {
                                             <div className="table-row  hover:bg-white hover:text-black cursor-pointer text-center ">
                                                 <div className='table-cell py-6 text-xl  border-t'>
                                                     <div className="w-10 h-10 mx-auto   ">
-                                                        <img src={memberInfo.image} alt="Profile" className="rounded-full w-full h-full flex  "
-                                                        />
+
+                                                        {
+                                                            memberInfo.image ?
+                                                                <img src={memberInfo.image} alt="Profile" className="rounded-full w-full h-full flex  "
+                                                                /> :
+                                                                <img src={userImage} alt="Profile" className="rounded-full w-full h-full flex  "
+                                                                />
+                                                        }
+
+
+
+
                                                     </div>
                                                 </div>
                                                 <div className="table-cell py-6 text-xl  border-t">{memberInfo.name}</div>
                                                 <div className="table-cell py-6 text-xl  border-t max-w-[400px]">{memberInfo.email}</div>
 
                                                 <div className="table-cell py-6 text-xl  border-t"> {memberInfo.userRole}</div>
-                                         
+
                                                 <div className="table-cell py-6 text-xl  border-t">
                                                     {
                                                         memberInfo.userRole === 'admin' ?
 
                                                             <>
-                                                                <button 
-                                                                onClick={()=>handleUserRole(memberInfo._id, 'member')} 
-                                                                className='btn  btn-xs '>  Member</button>
                                                                 <button
-                                                                     onClick={()=>handleUserRole(memberInfo._id, 'visitor')} 
-                                                                className='btn  btn-xs '>  visitor</button>
+                                                                    onClick={() => handleUserRole(memberInfo._id, 'member')}
+                                                                    className='btn  btn-xs '>  Member</button>
+                                                                <button
+                                                                    onClick={() => handleUserRole(memberInfo._id, 'visitor')}
+                                                                    className='btn  btn-xs '>  visitor</button>
 
 
                                                             </>
 
                                                             :
                                                             <>
-                                                                <button      onClick={()=>handleUserRole(memberInfo._id, 'admin')}  className='btn  btn-xs '>  Admin</button>
+                                                                <button onClick={() => handleUserRole(memberInfo._id, 'admin')} className='btn  btn-xs '>  Admin</button>
                                                                 {
                                                                     memberInfo.userRole === 'member' ?
-                                                                        <button      onClick={()=>handleUserRole(memberInfo._id, 'visitor')}  className='btn  btn-xs '>  visitor</button>
+                                                                        <button onClick={() => handleUserRole(memberInfo._id, 'visitor')} className='btn  btn-xs '>  visitor</button>
                                                                         :
                                                                         <button
-                                                                        onClick={()=>handleUserRole(memberInfo._id, 'member')} 
-                                                                        className='btn  btn-xs '>  member</button>
+                                                                            onClick={() => handleUserRole(memberInfo._id, 'member')}
+                                                                            className='btn  btn-xs '>  member</button>
                                                                 }
 
                                                             </>
 
                                                     }
                                                 </div>
-                             
+
                                                 <div className="table-cell py-6 text-xl  border-t px-4">
                                                     <button className="btn btn-success btn-xs mr-4">Details</button>
                                                     <button onClick={() => handleDelete(memberInfo._id)} className="btn btn-error btn-xs">Delete</button>
@@ -351,28 +365,28 @@ const AdminUser = () => {
                                             <p className='text-[12px]'>  {memberData.email}</p>
                                         </div>
 
-                                     <div className='w-[300px] mx-auto my-4   flex  xs:justify-center   '>
+                                        <div className='w-[300px] mx-auto my-4   flex  xs:justify-center   '>
                                             {
                                                 memberData.userRole === 'admin' ?
                                                     <>
-                                                        <button  onClick={()=>handleUserRole(memberData._id, 'member')}  className='btn  btn-xs btn-success '>  Make Member</button>
-                                                        <button  onClick={()=>handleUserRole(memberData._id, 'visitor')}  className='btn  btn-xs btn-warning'>  Make visitor</button>
+                                                        <button onClick={() => handleUserRole(memberData._id, 'member')} className='btn  btn-xs btn-success '>  Make Member</button>
+                                                        <button onClick={() => handleUserRole(memberData._id, 'visitor')} className='btn  btn-xs btn-warning'>  Make visitor</button>
                                                     </>
                                                     :
                                                     <>
-                                                        <button  onClick={()=>handleUserRole(memberData._id, 'admin')}  className='btn  btn-xs btn-success'>  Make Admin</button>
+                                                        <button onClick={() => handleUserRole(memberData._id, 'admin')} className='btn  btn-xs btn-success'>  Make Admin</button>
                                                         {
                                                             memberData.userRole === 'member' ?
-                                                                <button  onClick={()=>handleUserRole(memberData._id, 'visitor')}  className='btn  btn-xs btn-warning'> Make visitor</button>
+                                                                <button onClick={() => handleUserRole(memberData._id, 'visitor')} className='btn  btn-xs btn-warning'> Make visitor</button>
                                                                 :
-                                                                <button  onClick={()=>handleUserRole(memberData._id, 'member')}  className='btn  btn-xs btn-warning'> Make member</button>
+                                                                <button onClick={() => handleUserRole(memberData._id, 'member')} className='btn  btn-xs btn-warning'> Make member</button>
                                                         }
                                                     </>
                                             }
                                         </div>
                                         <div className="divider text-white"></div>
                                         <div className='w-[200px] mx-auto justify-center flex gap-4 mt-4'>
-                                            <button className="btn btn-xs btn-success">Details</button>                                                                     
+                                            <button className="btn btn-xs btn-success">Details</button>
                                             <button className="btn btn-xs btn-error" onClick={() => handleDelete(memberData._id)}>Delete</button>
                                         </div>
                                     </div>

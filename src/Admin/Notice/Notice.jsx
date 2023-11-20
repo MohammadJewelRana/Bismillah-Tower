@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
 // import useNotice from '../../hooks/useNotice';
 import { useEffect } from 'react';
 import useNotice from '../../hooks/useNotice';
+import { Helmet } from 'react-helmet-async';
 
 const Notice = () => {
 
@@ -30,7 +31,7 @@ const Notice = () => {
         // console.log(data);
         const notice = { subject: data.subject, notice: data.message, status: 'pending', noticeCreatedDate: formattedDate };
 
-        fetch('http://localhost:5000/notice', {
+        fetch('https://bismillah-tower-server.vercel.app/notice', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -61,7 +62,7 @@ const Notice = () => {
 
     const handleDelete = (id) => {
         // console.log(id);
-        fetch(`http://localhost:5000/notice/${id}`, {
+        fetch(`https://bismillah-tower-server.vercel.app/notice/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
@@ -85,10 +86,10 @@ const Notice = () => {
 
     const handleStatus = (id, status) => {
         // console.log(id, status);
-        const updateNotice={id:id,status:status};
+        const updateNotice = { id: id, status: status };
 
         //send data
-        fetch('http://localhost:5000/notice', {
+        fetch('https://bismillah-tower-server.vercel.app/notice', {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -120,6 +121,9 @@ const Notice = () => {
     return (
 
         <>
+                    <Helmet>
+                <title>Notice | Bismillah-Tower </title>
+            </Helmet>
             <div className='float-right mt-4'>
                 <button onClick={() => setAddNotice(!addNotice)} className="btn btn-primary ">
                     {addNotice ? 'Close the Form' : 'Add New Notice'}
@@ -276,11 +280,11 @@ const Notice = () => {
 
                                                 {
                                                     data.status === 'pending' ?
-                                                        <button  onClick={() => handleStatus(noticeInfo._id, 'pending')} className="btn btn-xs bg-green-600 hover:text-white text-black mr-2">Approved</button>
+                                                        <button onClick={() => handleStatus(data._id, 'approved')} className="btn btn-xs bg-green-600 hover:text-white text-black mr-2">Approved</button>
 
                                                         :
 
-                                                        <button onClick={() => handleStatus(noticeInfo._id, 'approved')} className="btn btn-xs bg-green-600 hover:text-white text-black mr-2">Pending</button>
+                                                        <button onClick={() => handleStatus(data._id, 'pending')} className="btn btn-xs bg-green-600 hover:text-white text-black mr-2">Pending</button>
 
                                                 }
 
